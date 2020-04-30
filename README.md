@@ -126,6 +126,7 @@ Pensé en agregar "_recovered" a cada tabla mientras iba trabajando con ella de 
 ```
 
 **------ En caso que tu Tabla venga de MySQL 5.6 o anteriores ------**
+
 Debes validar bien el valor *ROW_FORMAT* pues es diferente en cada versión de MySql.
 La Tabla que estas creando debe tener el mismo valor de ROW_FORMAT que el IBD anterior, de lo contrario tendrás un error llamado "mismatch" que se produce cuando las filas tienen diferente formato.
 
@@ -204,8 +205,10 @@ Como mencioné anteriormente, dependiendo si la versión donde están importando
 En este caso del ejemplo, MySQL 5.7 usa por defecto **ROW_TYPE_DYNAMIC** 
 y MySql 5.6 (de donde lo estaba importando) usa por defecto **ROW_TYPE_COMPACT** 
 
-Es por eso que arriba les indicaba el valor:
+Es por eso que arriba les indicaba el valor que debe agregarse al final del CREATE TABLE, para indicar el formato de Registro de la Tabla, y así ser compatibles con el archivo IBD que están por restaurar.
 
     ROW_FORMAT=compact
 
-Que debe agregarse al final del CREATE TABLE, para indicar el formato de Registro de la Tabla, y así ser compatibles con el archivo IBD que están por restaurar.
+
+Gracias! , si te sirvió, agradezco que le coloques una estrella al repo.
+
