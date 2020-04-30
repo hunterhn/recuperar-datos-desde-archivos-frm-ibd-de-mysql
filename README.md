@@ -11,7 +11,7 @@ Esto es una recopilación de información que encontré en diferentes foros de a
 Había perdido información en varias tablas de varias bases de datos en el mismo servidor, por eso los procesos fallaban al iniciarse, pero además, no se podían ejecutar las actualizaciones de paquetes tipo **apt-get upgrade** porque siempre habían errores dentro de *MySql*.
 
 **Error de actualización de MySql**
-```sh
+```
 Checking if update is needed.
 Checking server version.
 Running queries to upgrade MySQL server.
@@ -55,17 +55,20 @@ A mi, particularmente me funcionó muy bien [DBSake](https://github.com/abg/dbsa
 
 **Instrucciones**: Descargar el programa, Darle permisos de ejecución:
 
-    # curl -s http://get.dbsake.net > dbsake
-    # chmod u+x dbsake
+```sh
+$  curl -s http://get.dbsake.net > dbsake
+
+$  chmod u+x dbsake
+```
 
 El siguiente comando te imprimirá en pantalla el "CREATE TABLE" de la tabla que necesitas:
 ```sh
-./dbsake frmdump --type-codes /var/lib/mysql/database-name/tbl.frm
+$ ./dbsake frmdump --type-codes /var/lib/mysql/database-name/tbl.frm
 ```
 En mi caso preferí extraer todos los DDL de todos los archivos .FRM que tenía en la carpeta pues eran muchas las tablas con errores.
 
 ```sh
-./dbsake frmdump --type-codes /var/lib/mysql/mysql/*.frm > mysqlSchemas.sql
+$ ./dbsake frmdump --type-codes /var/lib/mysql/mysql/*.frm > mysqlSchemas.sql
 ```
 Ejemplo del DDL Generado dentro de mysqlSchemas.sql:
 
@@ -91,7 +94,7 @@ Comencemos:
 Accede desde terminar a MySql, y seguidamente a tu base de datos, ejemplo:
 
 ```sh
-    mysql -u root -p
+$ mysql -u root -p
 ```
 
 y luego :
@@ -137,6 +140,7 @@ Para solucionar esto debes agregar al final del Create Table:
 ```
 
 Dependiendo del formato que del que venía anteriormente (Segun la versión de MySql).
+
 **-------------------------------------------------------------------------------**
 
 Luego de haber creado la tabla se debe de eliminar su IBD desde MySql:
